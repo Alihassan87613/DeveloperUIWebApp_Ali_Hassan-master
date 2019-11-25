@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="UIDeveloperWebApplication.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head runat="server">
+    <title>UI Developer Web Site - FirstName LastName</title>
+<%--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>    
+    <script language="javascript">
+        /// This function is for sample cases only - DO NOT MAKE CHANGES
+        function defaultmasterfunction() {
+            alert("Primary Button Clicked");
+        };
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <td>
+        <tr>
+            <h1>Add Your Header here</h1>
+        </tr>
+    </td>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    /// This function is for sample cases only - DO NOT MAKE CHANGES
+    $(document).ready(function () {
+        $('#btnDefaultSecondary').click(function () {
+            alert("Secondary Button clicked");
+        });
+    });
+
+    /// This function is for sample cases only - DO NOT MAKE CHANGES
+    $(function () {
+        $('#btnDefaultWebServiceCall').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'Services/WebService.asmx/DefaultWebServiceCall',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    alert(response.d + "Success");
+                },
+                error: function (error) {
+                    alert("error");
+                }
+            });
+        });
+    });
+
+
+
+    /// Add your Additional Script code here
+
+    
+</script>
