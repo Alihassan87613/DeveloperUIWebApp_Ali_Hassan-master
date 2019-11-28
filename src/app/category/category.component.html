@@ -1,0 +1,89 @@
+<!--<p>Category works</p>-->
+<!--<app-category></app-category>-->
+
+
+<div class="container">
+    <mat-card>
+        <mat-toolbar color="accent">
+            <div align="center" style="color:#000;text-align: right;">
+                CRUD operation in Angular 7 using Web api and Sql Database
+            </div>
+        </mat-toolbar>
+        <br><br>
+        <mat-card-content>
+            <div class="row">
+                <form class="col s12" [formGroup]="purchaseForm" (ngSubmit)="onFormSubmit(purchaseForm.value)">
+                    <div class="row">
+
+                        <div class="input-field col s6">
+                            <mat-form-field>
+                                <mat-label>Select Category</mat-label>
+                                <mat-select formControlName="CategoryID">
+                                    <mat-option *ngFor="let category of allCategories | async" value={{category.CategoryID}}>
+                                        {{category.CategoryName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <mat-form-field>
+                                <mat-label>Select Location</mat-label>
+                                <mat-select formControlName="City">
+                                    <mat-optgroup label="Select City">
+                                        <mat-option *ngFor="let cityObj of allCityStateZipCodeData | async" value={{cityObj.City}}>
+                                            {{cityObj.City}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                    <mat-optgroup label="Select State">
+                                        <mat-option *ngFor="let stateObj of allCityStateZipCodeData | async" value={{stateObj.State}}>
+                                            {{stateObj.State}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                    <mat-optgroup label="Select Zip">
+                                        <mat-option *ngFor="let zipCode of allCityStateZipCodeData | async" value={{zipCode.Zip}}>
+                                            {{zipCode.Zip}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button" [disabled]="!purchaseForm.valid">
+                            Submit
+                        </button>
+                        <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>
+                        <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+                            {{massage}}
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <form>
+                <table class="table">
+                    <tr ngclass="btn-primary">
+                        <th class="tbl2">Category ID</th>
+                        <th class="tbl2">Category Name</th>
+                        <th class="tbl2">Zip Code</th>
+                        <th class="tbl2">City</th>
+                        <th class="tbl2">State</th>
+                        <th class="tbl2">Charge Amount</th>
+                    </tr>
+                    <tr *ngFor="let purchase of allPurchases | async">
+                        <td class="tbl2">{{purchase.CategoryID}}</td>
+                        <td class="tbl2">{{purchase.CategoryName | date }}</td>
+                        <td class="tbl2">{{purchase.ZipCode}}</td>
+                        <td class="tbl2">{{purchase.City}}</td>
+                        <td class="tbl2">{{purchase.State}}</td>
+                        <td class="tbl2">{{purchase.ChargeAmount}}</td>
+
+                    </tr>
+                </table>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!--(ngSubmit)="onFormSubmit(employeeForm.value)"-->
